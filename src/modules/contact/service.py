@@ -2,7 +2,7 @@ import logging
 
 from sqlalchemy.orm import Session
 
-from helper.email import send_contact_email
+from src.helper.email import send_contact_email
 from src.modules.contact import crud
 from src.modules.contact.schema import ContactCreateRequest, ContactResponse
 
