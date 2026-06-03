@@ -1,7 +1,7 @@
 from sqlalchemy import DateTime, Integer, String, Text, Column, func
 
 
-from database.base import Base
+from src.database.base import Base
 
 
 class Contact(Base):

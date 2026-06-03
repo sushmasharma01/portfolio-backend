@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from database.model import Contact
-from modules.contact.schema import ContactCreateRequest
+from src.database.model import Contact
+from src.modules.contact.schema import ContactCreateRequest
 
 
 def create_contact(db: Session, payload: ContactCreateRequest) -> Contact:

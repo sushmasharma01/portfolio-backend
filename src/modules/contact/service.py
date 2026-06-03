@@ -3,8 +3,8 @@ import logging
 from sqlalchemy.orm import Session
 
 from helper.email import send_contact_email
-from modules.contact import crud
-from modules.contact.schema import ContactCreateRequest, ContactResponse
+from src.modules.contact import crud
+from src.modules.contact.schema import ContactCreateRequest, ContactResponse
 
 
 logger = logging.getLogger(__name__)
@@ -21,6 +21,8 @@ class ContactService:
                 message=payload.message,
             )
         except Exception:
-            logger.exception("Failed to send contact email for contact_id=%s", contact.id)
+            logger.exception(
+                "Failed to send contact email for contact_id=%s", contact.id
+            )
 
         return contact

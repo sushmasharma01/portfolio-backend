@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from modules.contact.router import router as contact_router
+from src.modules.contact.router import router as contact_router
 from fastapi.middleware.cors import CORSMiddleware
 
 

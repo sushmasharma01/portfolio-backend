@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
-from database.session import get_db
-from modules.contact.schema import (
+from src.database.session import get_db
+from src.modules.contact.schema import (
     ContactCreateRequest,
     ContactResponse,
 )
-from modules.contact.service import ContactService
+from src.modules.contact.service import ContactService
 
 router = APIRouter(prefix="/contact", tags=["contact"])
 service = ContactService()
