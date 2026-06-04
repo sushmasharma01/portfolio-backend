@@ -53,7 +53,10 @@ def send_contact_email(name: str, email: str, message: str) -> None:
         subtype="html",
     )
 
-    with smtplib.SMTP(smtp_host, smtp_port) as smtp:
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
+        smtp.set_debuglevel(1)  # optional but useful in logs
+
         smtp.starttls()
         smtp.login(smtp_user, smtp_password)
         smtp.send_message(mail)
+        smtp.quit()
