@@ -2,6 +2,7 @@ import os
 import smtplib
 from email.message import EmailMessage
 
+
 from dotenv import load_dotenv
 import socket
 
@@ -44,7 +45,7 @@ def send_contact_email(name: str, email: str, message: str) -> None:
         subtype="html",
     )
 
-    print("DNS check:", socket.gethostbyname("smtp.gmail.com"))
+    print("DNS check:", socket.gethostbyname("smtp.sendgrid.net"))
 
     with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
         smtp.set_debuglevel(1)
