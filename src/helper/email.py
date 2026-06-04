@@ -3,6 +3,7 @@ import smtplib
 from email.message import EmailMessage
 
 from dotenv import load_dotenv
+import socket
 
 
 load_dotenv()
@@ -26,37 +27,27 @@ def send_contact_email(name: str, email: str, message: str) -> None:
     mail["From"] = sender_email
     mail["To"] = OWNER_EMAIL
     mail["Reply-To"] = email
-    # mail.set_content(f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}\n")
-    mail.set_content("Your email client does not support HTML.")
+
+    mail.set_content(f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}")
 
     mail.add_alternative(
         f"""
-    <html>
-      <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-        <h2 style="color: #2563eb;">📩 New Contact Request</h2>
-
-        <p><strong>Name:</strong> {name}</p>
-        <p><strong>Email:</strong> {email}</p>
-
-        <h3>Message</h3>
-        <div style="padding: 12px; background: #f4f4f4; border-radius: 8px;">
-          {message}
-        </div>
-
-        <hr>
-        <p style="color: #666;">
-          Sent from your portfolio contact form.
-        </p>
-      </body>
-    </html>
-    """,
+        <html>
+          <body>
+            <h2>New Contact Request</h2>
+            <p><b>Name:</b> {name}</p>
+            <p><b>Email:</b> {email}</p>
+            <div>{message}</div>
+          </body>
+        </html>
+        """,
         subtype="html",
     )
 
-    with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
-        smtp.set_debuglevel(1)  # optional but useful in logs
+    print("DNS check:", socket.gethostbyname("smtp.gmail.com"))
 
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
+        smtp.set_debuglevel(1)
         smtp.starttls()
         smtp.login(smtp_user, smtp_password)
         smtp.send_message(mail)
-        smtp.quit()
