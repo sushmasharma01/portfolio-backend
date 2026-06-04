@@ -44,7 +44,11 @@ def send_contact_email(name: str, email: str, message: str) -> None:
         """,
         subtype="html",
     )
-
+    print("SMTP_HOST =", smtp_host)
+    print("SMTP_PORT =", smtp_port)
+    print("SMTP_USER =", smtp_user)
+    print("SENDER_EMAIL =", sender_email)
+    print("PASSWORD_EXISTS =", bool(smtp_password))
     print("DNS check:", socket.gethostbyname("smtp.sendgrid.net"))
 
     with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as smtp:
