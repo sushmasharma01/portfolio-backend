@@ -25,4 +25,3 @@ app.add_middleware(
 
 
 app.include_router(contact_router, prefix="/api")
-sr
