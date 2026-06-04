@@ -14,7 +14,10 @@ frontend_url = os.getenv("FRONTEND_URL")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],
+    allow_origins=[
+        "http://localhost:4200",
+        "https://https://sushma-sharma.netlify.app/",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,3 +25,4 @@ app.add_middleware(
 
 
 app.include_router(contact_router, prefix="/api")
+sr
